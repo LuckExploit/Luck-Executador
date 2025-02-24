@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="clover.png" type="image/x-icon">
+  <title>Luck Exploit</title>
+  <link rel="shortcut icon" href="luck.png" type="image/x-icon">
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #1e1e1e;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* --- Topbar Preto com Letras Neon --- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.9); /* Fundo preto fixo */
+      padding: 15px 40px;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(76, 175, 80, 0.4);
+      animation: fadeInDown 1.5s ease forwards;
+    }
+    header h1 {
+      font-size: 32px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      animation: neonFlicker 2s infinite alternate;
+      color: #4caf50;
+      text-shadow: 
+        0 0 5px #4caf50,
+        0 0 10px #4caf50,
+        0 0 20px #4caf50,
+        0 0 40px #4caf50;
+    }
+    header nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+    header nav ul li {
+      font-size: 18px;
+    }
+    header nav ul li a {
+      color: #4caf50;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+      animation: neonFlicker 2s infinite alternate;
+      text-shadow:
+        0 0 5px #4caf50,
+        0 0 10px #4caf50,
+        0 0 20px #4caf50,
+        0 0 40px #4caf50;
+    }
+    header nav ul li a:hover {
+      color: #ffeb3b;
+      text-shadow:
+        0 0 5px #ffeb3b,
+        0 0 10px #ffeb3b,
+        0 0 20px #ffeb3b,
+        0 0 40px #ffeb3b;
+    }
+
+    /* --- Seção Hero --- */
+    .hero {
+      text-align: center;
+      background: linear-gradient(135deg, #4caf50, #2e7d32);
+      padding: 150px 20px 50px;
+      margin-top: 80px; /* Ajuste para compensar o cabeçalho fixo */
+      animation: fadeIn 2s ease forwards;
+    }
+    .hero h2 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      animation: slideIn 1.5s ease-out forwards;
+    }
+    .hero p {
+      font-size: 22px;
+      margin-bottom: 30px;
+      animation: slideIn 1.8s ease-out forwards;
+    }
+    .hero .btn {
+      background-color: #ffeb3b;
+      color: #4caf50;
+      padding: 15px 30px;
+      font-size: 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.3s;
+      animation: pulse 2s infinite;
+    }
+    .hero .btn:hover {
+      background-color: #4caf50;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    /* --- Seção de Conteúdo --- */
+    .content {
+      text-align: center;
+      padding: 60px 20px;
+      animation: fadeIn 2s ease forwards;
+    }
+    .content h2 {
+      font-size: 36px;
+      color: #4caf50;
+      margin-bottom: 30px;
+      animation: slideIn 1.5s ease-out forwards;
+    }
+    .content p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+      animation: slideIn 2s ease-out forwards;
+    }
+
+    /* --- Rodapé --- */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 30px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      animation: fadeInUp 2s ease forwards;
+    }
+
+    /* --- Animações --- */
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideIn {
+      0% { opacity: 0; transform: translateX(-50px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    @keyframes neonFlicker {
+      0% {
+        text-shadow:
+          0 0 5px #4caf50,
+          0 0 10px #4caf50,
+          0 0 20px #4caf50,
+          0 0 40px #4caf50;
+      }
+      50% {
+        text-shadow:
+          0 0 10px #4caf50,
+          0 0 20px #4caf50,
+          0 0 30px #4caf50,
+          0 0 50px #4caf50;
+      }
+      100% {
+        text-shadow:
+          0 0 5px #4caf50,
+          0 0 10px #4caf50,
+          0 0 20px #4caf50,
+          0 0 40px #4caf50;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🍀 Luck Exploit</h1>
+    <nav>
+      <ul>
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#exploit">O que é um exploit?</a></li>
+        <li><a href="gerakey.html">Key?</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="inicio" class="hero">
+    <h2>Domine o Roblox com Luck Exploit!</h2>
+    <p>Explote os limites do jogo com segurança e precisão. A sorte está ao seu lado!</p>
+    <a href="download.html" class="btn">Baixar Agora</a>
+  </section>
+
+  <section id="exploit" class="content">
+    <h2>O que é um Exploit no Roblox?</h2>
+    <p>No contexto do Roblox, um exploit é um software ou script utilizado para modificar ou explorar vulnerabilidades do jogo, permitindo que os jogadores obtenham vantagens injustas ou acessem funcionalidades que normalmente não estariam disponíveis. Esses exploits podem incluir hacks para dinheiro infinito, teleporte, velocidade aumentada, entre outros.</p>
+    
+    <p>Os exploits funcionam injetando códigos externos nos processos do jogo, muitas vezes utilizando linguagens como Lua (a mesma usada nos scripts do Roblox) ou DLLs para manipular a memória do jogo. Alguns exploits mais avançados contam com interfaces personalizadas, permitindo que os usuários executem scripts pré-configurados para obter vantagens.</p>
+    
+    <h2>Exploits são permitidos?</h2>
+    <p>Não! O uso de exploits viola os termos de serviço do Roblox e pode resultar em banimento permanente da conta. A plataforma possui sistemas de segurança como o Byfron Anti-Cheat, que detectam e bloqueiam atividades suspeitas. Além disso, utilizar exploits pode comprometer a segurança do próprio usuário, já que muitos desses programas contêm malware e podem roubar contas ou informações pessoais.</p>
+    
+    <h2>Conclusão</h2>
+    <p>Apesar de serem populares entre alguns jogadores, exploits são considerados trapaça e podem trazer consequências negativas. Se você deseja se destacar no Roblox, a melhor forma é melhorar suas habilidades no jogo ou aprender a desenvolver seus próprios jogos dentro da plataforma!</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Luck Exploit. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>

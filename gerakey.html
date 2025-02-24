@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gerador de Key Luck</title>
+  <link rel="shortcut icon" href="clover.png" type="image/x-icon">
+  <style>
+    /* Animação de fundo com tons de verde */
+    @keyframes glow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Animação de entrada para os botões */
+    @keyframes buttonFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      /* Fundo animado com diferentes tons de verde */
+      background: linear-gradient(-45deg, #004d00, #007300, #009900, #00cc00);
+      background-size: 300% 300%;
+      animation: glow 10s ease infinite;
+      color: #fff;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.85);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 255, 100, 0.5);
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+    }
+
+    /* Logo no canto superior esquerdo */
+    .logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .logo:hover {
+      transform: scale(1.1) rotate(10deg);
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #4caf50;
+      text-shadow: 0 0 12px rgba(76, 175, 80, 0.9);
+    }
+
+    #key {
+      font-size: 24px;
+      letter-spacing: 2px;
+      background: #333;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      transition: 0.3s;
+      border: 2px solid #4caf50;
+    }
+    #key:hover {
+      box-shadow: 0 0 12px rgba(76, 175, 80, 0.9);
+    }
+
+    .btn {
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      margin: 5px;
+      transition: 0.3s;
+      box-shadow: 0 4px 12px rgba(76, 175, 80, 0.6);
+      animation: buttonFadeIn 1s ease forwards;
+    }
+    .btn:active {
+      transform: scale(0.95);
+      box-shadow: 0 2px 6px rgba(76, 175, 80, 0.8);
+    }
+    .btn:hover {
+      background: #45a049;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #ffeb3b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Logo com a imagem clover.png -->
+    <img src="clover.png" alt="Logo" class="logo">
+    <h1>Gerador de Key Luck</h1>
+    <!-- Key padrão -->
+    <div id="key">0000-0000-0000-0000</div>
+    <!-- Botão para gerar nova key -->
+    <button id="generateBtn" class="btn">Gerar Nova Key</button>
+    <!-- Botão para copiar a key -->
+    <button id="copyBtn" class="btn">Copiar Key</button>
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    // Variável para impedir que a key seja gerada mais de uma vez
+    let keyGenerated = false;
+
+    // Função que gera a key no formato XXXX-XXXX-XXXX-XXXX,
+    // com um dos grupos (escolhido aleatoriamente) fixado como "Luck"
+    function generateKey() {
+      if (keyGenerated) return; // impede gerar mais de uma vez
+      const totalGroups = 4;
+      const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      const groups = [];
+      // Escolhe aleatoriamente um índice entre 0 e 3 para o grupo fixo "Luck"
+      const luckIndex = Math.floor(Math.random() * totalGroups);
+      for (let i = 0; i < totalGroups; i++) {
+        if (i === luckIndex) {
+          groups.push("Luck");
+        } else {
+          let group = "";
+          for (let j = 0; j < 4; j++) {
+            group += characters.charAt(Math.floor(Math.random() * characters.length));
+          }
+          groups.push(group);
+        }
+      }
+      document.getElementById("key").textContent = groups.join("-");
+      keyGenerated = true;
+    }
+
+    // Evento para gerar a key ao clicar no botão
+    document.getElementById("generateBtn").addEventListener("click", generateKey);
+
+    // Evento para copiar a key e redirecionar após 3 segundos
+    document.getElementById("copyBtn").addEventListener("click", function() {
+      const keyText = document.getElementById("key").textContent;
+      navigator.clipboard.writeText(keyText)
+        .then(function() {
+          const messageElement = document.getElementById("message");
+          messageElement.textContent = "Key copiada com sucesso! Redirecionando...";
+          setTimeout(function() {
+            window.location.href = "https://www.example.com"; // Altere para a URL desejada
+          }, 3000);
+        })
+        .catch(function(err) {
+          alert("Erro ao copiar a key: " + err);
+        });
+    });
+  </script>
+</body>
+</html>
