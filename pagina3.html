@@ -37,40 +37,26 @@
         .btn:hover {
             background-color: #45a049;
         }
-
-        .hidden {
-            display: none;
-        }
     </style>
 </head>
 <body>
 
     <div class="progress">Progresso: <span id="step">1</span>/3</div>
     <button class="btn" id="nextButton">Ir ao segundo</button>
-    <button class="btn hidden" id="finalButton">Finalizar</button>
 
     <script>
         let step = 1;
         const stepText = document.getElementById("step");
         const nextButton = document.getElementById("nextButton");
-        const finalButton = document.getElementById("finalButton");
 
         nextButton.addEventListener("click", () => {
-            if (step < 3) {
-                step++;
-                stepText.textContent = step;
-
-                if (step === 2) {
-                    nextButton.textContent = "Ir ao Segundo";
-                } else if (step === 3) {
-                    nextButton.classList.add("hidden");
-                    finalButton.classList.remove("hidden");
-                }
+            if (step === 1) {
+                window.location.href = "pagina2.html";
+            } else if (step === 2) {
+                window.location.href = "pagina3.html";
+            } else if (step === 3) {
+                window.location.href = "https://direct-link.net/1303361/key-luck1";
             }
-        });
-
-        finalButton.addEventListener("click", () => {
-            alert("Você completou todas as etapas!");
         });
     </script>
 
